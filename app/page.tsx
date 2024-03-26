@@ -37,17 +37,28 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col h-screen w-full justify-center items-center">
-      <Tabs defaultValue="account" className="w-[400px]">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="account">Account</TabsTrigger>
-          <TabsTrigger value="password">Password</TabsTrigger>
+      <Tabs defaultValue="create-account" className="w-[400px] border rounded-md pb-4 shadow-2xl">
+        <TabsList className="flex justify-around items-center rounded-b-none h-14">
+         
+          <TabsTrigger
+            value="create-account"
+            className="transition-all dalay-150">
+              Account
+          </TabsTrigger>
+
+          <TabsTrigger
+            value="login"
+            className="transition-all dalay-150">                      
+            Login
+          </TabsTrigger>
+
         </TabsList>
-        <TabsContent value="account">
+        <TabsContent value="create-account">
           <Card>
             <CardHeader>
-              <CardTitle>Account</CardTitle>
+              <CardTitle>Create your account</CardTitle>
               <CardDescription>
-                Make changes to your account here. Click save when you're done.
+                Create your account
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
@@ -65,10 +76,10 @@ export default async function Home() {
             </CardFooter>
           </Card>
         </TabsContent>
-        <TabsContent value="password">
+        <TabsContent value="login">
           <Card>
             <CardHeader>
-              <CardTitle>Password</CardTitle>
+              <CardTitle>Login</CardTitle>
               <CardDescription>
                 Change your password here. After saving, you'll be logged out.
               </CardDescription>
