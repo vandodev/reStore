@@ -4,8 +4,11 @@ language plpgsql
 security definer set search_path = public
 as $$
 begin
-  insert into public.profiles (id)
-  values (new.id);
+  insert into public.profiles (id,email)
+  values (
+    new.id,
+    new.email
+    );
   return new;
 end;
 $$;
@@ -13,4 +16,4 @@ $$;
 -- trigger the function every time a user is created
 create trigger on_auth_user_created
   after insert on auth.users
-  for each row execute procedure public.handle_new_userA();
+  for each row execute procedure public.handle_new_user();
