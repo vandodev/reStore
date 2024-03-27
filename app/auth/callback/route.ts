@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import {cookies} from "next/headers";
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs"
 
-export async function Get(request: NextRequest) {
+export async function GET(request: NextRequest) {
     const requestUrl = new URL(request.url)
     const code = requestUrl.searchParams.get("code")
 

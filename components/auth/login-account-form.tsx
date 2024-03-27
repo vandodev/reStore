@@ -7,6 +7,8 @@ import {zodResolver} from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { useRouter } from "next/navigation"
 
 const formShema = z.object({
     email: z.string({
@@ -26,6 +28,7 @@ const formShema = z.object({
 })
 
 export function LoginAccounrForm(){
+    const router = useRouter()
     const form = useForm<z.infer<typeof formShema>>({
         resolver: zodResolver(formShema),
         defaultValues:{
@@ -35,7 +38,20 @@ export function LoginAccounrForm(){
     })
 
     const onSubmit = async(values: z.infer<typeof formShema>) => {
-        console.log(values)
+        console.log("olá 123")
+        try {
+            const supabase = createClientComponentClient()
+            const {email, password} = values
+            const {error, data:{session}} = await supabase.auth.signInWithPassword({
+                email,
+                password,
+            })
+            console.log("olá")
+            form.reset()
+            router.refresh()
+         } catch (error) {
+            console.log("LoginAccounrForm", error)
+        }        
     }
 
    return (
@@ -76,7 +92,7 @@ export function LoginAccounrForm(){
                         )}
                     />
 
-                    <Button type="submit" >Create account</Button>
+                    <Button type="submit" >Login</Button>
 
                 </form>
             </Form>

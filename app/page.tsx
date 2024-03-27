@@ -23,7 +23,7 @@ export default async function Home() {
   } catch (error) {
     console.log("Home", error)
   }finally{
-    if(loggedIn) redirect("app/user-app", RedirectType.replace)
+    if(loggedIn) redirect("/user-app", RedirectType.replace)
   }
 
   return (
