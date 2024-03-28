@@ -1,3 +1,4 @@
+import { UserNav } from "@/components/common/user-nav"
 import {createServerComponentClient} from "@supabase/auth-helpers-nextjs"
 import {cookies} from "next/headers"
 import { RedirectType, redirect } from "next/navigation"
@@ -16,5 +17,7 @@ export default async function UserApp(){
       if(!loggedIn) redirect("/", RedirectType.replace)
     }
 
-    return <h1>Usuário logado</h1>
+    return (
+      <UserNav />
+    )
 }
