@@ -10,12 +10,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 
 export function ImageUploadPlaceHolder() {
+
+    const HandleDialogOpenChange = async (e:boolean) =>{
+        console.log(e)
+    }
+
   return (
-    <div className="flex h-[450px] shrink-0 items-center justify-center rounded-md border border-dashed">
+    <div className="flex h-[200px] w-full shrink-0 items-center justify-center rounded-md border border-dashed">
       <div className="mx-auto flex max-w-[420px] flex-col items-center justify-center text-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -32,31 +35,30 @@ export function ImageUploadPlaceHolder() {
           <path d="M17 18.5a9 9 0 1 0-10 0" />
         </svg>
 
-        <h3 className="mt-4 text-lg font-semibold">No episodes added</h3>
+        <h3 className="mt-4 text-lg font-semibold">Just add</h3>
         <p className="mb-4 mt-2 text-sm text-muted-foreground">
-          You have not added any podcasts. Add one below.
+            The photo you add will be enhanced by IA.
         </p>
-        <Dialog>
+        <Dialog onOpenChange={HandleDialogOpenChange}>
           <DialogTrigger asChild>
             <Button size="sm" className="relative">
-              Add Podcast
+              Bring your past to life
             </Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Add Podcast</DialogTitle>
+              <DialogTitle>Add Photo</DialogTitle>
               <DialogDescription>
-                Copy and paste the podcast feed URL to import.
+                Drag a photo in order to Upload & Enhanced.
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
               <div className="grid gap-2">
-                <Label htmlFor="url">Podcast URL</Label>
-                <Input id="url" placeholder="https://example.com/feed.xml" />
+               {/*TODO: Component upload */}
               </div>
             </div>
             <DialogFooter>
-              <Button>Import Podcast</Button>
+              <Button>Enhance</Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
