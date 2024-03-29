@@ -8,6 +8,7 @@ import { RedirectType, redirect } from "next/navigation"
 import {PlusCircleIcon} from "lucide-react"
 import {Button} from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
+import {ImageUploadPlaceHolder} from "@/components/user-app/img-upload-placeholder"
 
 export default async function UserApp(){
     let loggedIn = false
@@ -68,7 +69,22 @@ export default async function UserApp(){
                           </div>
                           <Separator className="my-4" />
                           <div className="relative">
-                            Lista 1
+                            <ImageUploadPlaceHolder />
+                            {/* <ScrollArea>
+                              <div className="flex space-x-4 pb-4">
+                                {listenNowAlbums.map((album) => (
+                                  <AlbumArtwork
+                                    key={album.name}
+                                    album={album}
+                                    className="w-[250px]"
+                                    aspectRatio="portrait"
+                                    width={250}
+                                    height={330}
+                                  />
+                                ))}
+                              </div>
+                              <ScrollBar orientation="horizontal" />
+                            </ScrollArea> */}
                           </div>
                           <div className="mt-6 space-y-1">
                             <h2 className="text-2xl font-semibold tracking-tight">
@@ -80,7 +96,22 @@ export default async function UserApp(){
                           </div>
                           <Separator className="my-4" />
                           <div className="relative">
-                            Lista 2                           
+                            Lista 2
+                            {/* <ScrollArea>
+                              <div className="flex space-x-4 pb-4">
+                                {madeForYouAlbums.map((album) => (
+                                  <AlbumArtwork
+                                    key={album.name}
+                                    album={album}
+                                    className="w-[150px]"
+                                    aspectRatio="square"
+                                    width={150}
+                                    height={150}
+                                  />
+                                ))}
+                              </div>
+                              <ScrollBar orientation="horizontal" />
+                            </ScrollArea> */}
                           </div>
                         </TabsContent>
                         <TabsContent
