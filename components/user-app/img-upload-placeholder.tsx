@@ -22,7 +22,7 @@ interface FilePreview {
 
 export function ImageUploadPlaceHolder() {
     const [file, setFile] = useState<FilePreview | null>()
-    const [fileToprocces, setFileToProcess] = useState<{
+    const [fileToProcess, setFileToProcess] = useState<{
         path: string
     }| null>(null)
     const [restoredFile, setRestoredFile] = useState<FilePreview | null>()
@@ -47,6 +47,7 @@ export function ImageUploadPlaceHolder() {
 
             if(!error){
               setFileToProcess(data)
+              console.log("File to procces",data)
             }
 
         } catch (error) {
@@ -69,6 +70,23 @@ export function ImageUploadPlaceHolder() {
             "image/jpng":[".jpg"]
         }
     })
+
+    const handleEnhance = async () => {
+      try {
+        const supabase = createClientComponentClient();
+        const {
+          data: { publicUrl },
+        } = await supabase.storage
+          .from(process.env.NEXT_PUBLIC_SUPABASE_APP_BUCKET_IMAGE_FOLDER)
+          .getPublicUrl(`${fileToProcess?.path}`);
+          // .createSignedUrl(`${fileToProcess?.path}`,60); Fica disponível pos 60 segundos
+     
+          console.log("URL Pública", publicUrl)
+          
+      } catch (error) {
+        console.log("handleEnhance: ", error);
+      }
+    }
 
 
   return (
@@ -158,7 +176,7 @@ export function ImageUploadPlaceHolder() {
               </div>
             </div>
             <DialogFooter>
-              <Button>Enhance</Button>
+              <Button onClick={handleEnhance}>Enhance</Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
