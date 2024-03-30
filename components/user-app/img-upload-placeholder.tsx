@@ -21,6 +21,7 @@ interface FilePreview {
 }
 
 export function ImageUploadPlaceHolder() {
+  const [isMounted, setIsMountad] = useState(false)
     const [file, setFile] = useState<FilePreview | null>()
     const [fileToProcess, setFileToProcess] = useState<{
         path: string
@@ -56,6 +57,7 @@ export function ImageUploadPlaceHolder() {
     },[])
 
     useEffect(() => {
+      setIsMountad(true)
       return () => {
         if(file) URL.revokeObjectURL(file.preview)
         if(restoredFile) URL.revokeObjectURL(restoredFile.preview)
@@ -98,6 +100,7 @@ export function ImageUploadPlaceHolder() {
       }
     }
 
+    if(!isMounted) return null;
 
   return (
     <div className="flex h-[200px] w-full shrink-0 items-center justify-center rounded-md border border-dashed">
