@@ -74,13 +74,23 @@ export function ImageUploadPlaceHolder() {
     const handleEnhance = async () => {
       try {
         const supabase = createClientComponentClient();
+
         const {
           data: { publicUrl },
         } = await supabase.storage
           .from(process.env.NEXT_PUBLIC_SUPABASE_APP_BUCKET_IMAGE_FOLDER)
           .getPublicUrl(`${fileToProcess?.path}`);
           // .createSignedUrl(`${fileToProcess?.path}`,60); Fica disponível pos 60 segundos
-     
+                   
+          const res = await fetch("api/ai/replicate", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              imageUrl: publicUrl,
+            }),
+          })
           console.log("URL Pública", publicUrl)
           
       } catch (error) {
